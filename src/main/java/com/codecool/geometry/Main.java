@@ -12,6 +12,23 @@ public class Main {
 
     public static void main(String[] args) {
 
+        RegularPentagon regularPentagon = new RegularPentagon(2);
+
+        System.out.println(regularPentagon.calculateArea());
+        System.out.println(regularPentagon.calculatePerimeter());
+        System.out.println(regularPentagon);
+
+
+
+        EquilateralTriangle EquilateralTriangle = new EquilateralTriangle(2);
+
+        System.out.println(EquilateralTriangle.calculateArea());
+        System.out.println(EquilateralTriangle.calculatePerimeter());
+        System.out.println(EquilateralTriangle);
+
+
+        System.exit(0);
+
         boolean isRunning = true;
 
 	    while (isRunning) {

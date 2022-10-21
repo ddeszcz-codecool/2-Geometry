@@ -26,7 +26,12 @@ public abstract class Shape {
      * @param args
      * @return true if all of args are greater than 0
      */
-    public static boolean checkIfArgsGreaterThanZero(float... args) {
-        return false;
+    public static boolean checkIfArgsGreaterThanZero(float... args) throws IllegalArgumentException {
+        for (float argument :args) {
+            if (argument<=0)
+                throw new IllegalArgumentException("One of the arguments is 0 or less");
+                return false;
+        }
+        return true;
     }
 }
