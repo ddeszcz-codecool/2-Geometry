@@ -31,11 +31,15 @@ public class Triangle extends Shape {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Triangle{");
-        sb.append("sideOne=").append(sideOne);
-        sb.append(", sideTwo=").append(sideTwo);
-        sb.append(", sideThree=").append(sideThree);
-        sb.append('}');
+
+        String sideOnePrint = String.format("%.2f", sideOne);
+        String sideTwoPrint = String.format("%.2f", sideTwo);
+        String sideThreePrint = String.format("%.2f", sideThree);
+        final StringBuilder sb = new StringBuilder(getClass().getSimpleName()+", ");
+        sb.append("a = ").append(sideOnePrint).append(", ");
+        sb.append("b = ").append(sideTwoPrint).append(", ");
+        sb.append("c = ").append(sideThreePrint);
+
         return sb.toString();
     }
 }

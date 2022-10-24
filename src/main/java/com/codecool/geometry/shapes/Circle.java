@@ -11,7 +11,7 @@ public class Circle extends Shape {
 
     @Override
     public double calculateArea() {
-        return Math.PI*radius;
+        return Math.PI*radius*radius;
     }
 
     @Override
@@ -21,9 +21,10 @@ public class Circle extends Shape {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Circle{");
-        sb.append("radius=").append(radius);
-        sb.append('}');
+        String radiusPrint = String.format("%.2f", radius);
+        final StringBuilder sb = new StringBuilder(getClass().getSimpleName()+", ");
+        sb.append("r = ").append(radiusPrint);
+
         return sb.toString();
     }
 }

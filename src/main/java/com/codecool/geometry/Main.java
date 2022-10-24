@@ -12,20 +12,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        RegularPentagon regularPentagon = new RegularPentagon(2);
+        Circle circle = new Circle(4);
+        Rectangle rectangle = new Rectangle(2, 5);
+        Triangle triangle = new Triangle(6,7,8);
+        Square square = new Square(10);
+        EquilateralTriangle equilateralTriangle = new EquilateralTriangle(2);
+        RegularPentagon regularPentagon = new RegularPentagon(5);
 
-        System.out.println(regularPentagon.calculateArea());
-        System.out.println(regularPentagon.calculatePerimeter());
-        System.out.println(regularPentagon);
+        ShapeCollection shapeCollection = new ShapeCollection();
+        shapeCollection.addShape(circle, rectangle, triangle, square, equilateralTriangle, regularPentagon);
 
-
-
-        EquilateralTriangle EquilateralTriangle = new EquilateralTriangle(2);
-
-        System.out.println(EquilateralTriangle.calculateArea());
-        System.out.println(EquilateralTriangle.calculatePerimeter());
-        System.out.println(EquilateralTriangle);
-
+        shapeCollection.getShapesTable();
 
         System.exit(0);
 

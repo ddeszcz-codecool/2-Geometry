@@ -22,10 +22,12 @@ public class Rectangle extends Shape {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Rectangle{");
-        sb.append("sideOne=").append(sideOne);
-        sb.append(", sideTwo=").append(sideTwo);
-        sb.append('}');
+        String sideOnePrint = String.format("%.2f", sideOne);
+        String sideTwoPrint = String.format("%.2f", sideTwo);
+        final StringBuilder sb = new StringBuilder(getClass().getSimpleName()+", ");
+        sb.append("a = ").append(sideOnePrint).append(", ");
+        sb.append("b = ").append(sideTwoPrint);
+
         return sb.toString();
     }
 }

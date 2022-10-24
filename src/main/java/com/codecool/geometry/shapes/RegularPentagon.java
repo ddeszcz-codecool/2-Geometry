@@ -21,9 +21,9 @@ public class RegularPentagon extends Shape {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("RegularPentagon{");
-        sb.append("sideOne=").append(side);
-        sb.append('}');
+        String sideOnePrint = String.format("%.2f", side);
+        final StringBuilder sb = new StringBuilder(getClass().getSimpleName()+", ");
+        sb.append("a = ").append(sideOnePrint);
         return sb.toString();
     }
 }
