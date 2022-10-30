@@ -7,51 +7,92 @@ skinparam linetype ortho
 class Circle {
   + Circle(double): 
   - radius: double
+  + calculateArea(): double
+  + calculatePerimeter(): double
+  + toString(): String
 }
 class Display {
   + Display(): 
+  + equationsForAreaAndPerimeter(String): void
+  + largestShapeByPerimeter(ShapeCollection): void
+  + mainMenu(): void
+  + largestShapeByArea(ShapeCollection): void
+  + shapeTypesMenu(): void
 }
 class EquilateralTriangle {
   + EquilateralTriangle(double): 
   - sideOne: double
+  + toString(): String
 }
 class FormulaProvider {
   + FormulaProvider(): 
+  + getPerimeterForShape(String): String
+  + getAreaForShape(String): String
 }
 class Main {
   + Main(): 
+  + main(String[]): void
 }
 class Rectangle {
   + Rectangle(double, double): 
   - sideOne: double
   - sideTwo: double
+  + calculatePerimeter(): double
+  + calculateArea(): double
+  + toString(): String
 }
 class RegularPentagon {
   + RegularPentagon(double): 
   - side: double
+  + calculatePerimeter(): double
+  + calculateArea(): double
+  + toString(): String
 }
 class Shape {
   + Shape(): 
+  + calculateArea(): double
+  + checkIfArgsGreaterThanZero(float[]): boolean
+  + calculatePerimeter(): double
 }
 class ShapeCollection {
   + ShapeCollection(): 
   - shapesList: List<Shape>
+  - addEquilateralTriangle(int): void
+  - addCircle(int): void
+  + getShapesTable(): void
+  - getAreaFormula(Shape): String
+  + getLargestShapeByArea(): SortShapeComparator
+  + addShapeBasedOnUserSelection(int): void
+  - addRectangle(int, int): void
+  - addRegularPentagon(int): void
+  - getPerimeterFormula(Shape): String
+  - addTriangle(int, int, int): void
+  - addSquare(int): void
+  + getLargestShapeByPerimeter(): SortShapeComparator
+  + addShape(Shape): void
+  + addShape(Shape[]): void
 }
 class SortShapeComparator {
   + SortShapeComparator(String, double, double): 
   + shapePerimeter: double
   + shapeName: String
   + shapeArea: double
+  + getShapePerimeter(): double
+  + getShapeArea(): double
 }
 class Square {
   + Square(double): 
   - sideOne: double
+  + toString(): String
 }
 class Triangle {
   + Triangle(double, double, double): 
   - sideTwo: double
   - sideOne: double
   - sideThree: double
+  + calculateArea(): double
+  + calculatePerimeter(): double
+  + toString(): String
 }
 
 Circle               -[#000082,plain]-^  Shape               
