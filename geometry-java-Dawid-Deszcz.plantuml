@@ -1,0 +1,64 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Circle {
+  + Circle(double): 
+  - radius: double
+}
+class Display {
+  + Display(): 
+}
+class EquilateralTriangle {
+  + EquilateralTriangle(double): 
+  - sideOne: double
+}
+class FormulaProvider {
+  + FormulaProvider(): 
+}
+class Main {
+  + Main(): 
+}
+class Rectangle {
+  + Rectangle(double, double): 
+  - sideOne: double
+  - sideTwo: double
+}
+class RegularPentagon {
+  + RegularPentagon(double): 
+  - side: double
+}
+class Shape {
+  + Shape(): 
+}
+class ShapeCollection {
+  + ShapeCollection(): 
+  - shapesList: List<Shape>
+}
+class SortShapeComparator {
+  + SortShapeComparator(String, double, double): 
+  + shapePerimeter: double
+  + shapeName: String
+  + shapeArea: double
+}
+class Square {
+  + Square(double): 
+  - sideOne: double
+}
+class Triangle {
+  + Triangle(double, double, double): 
+  - sideTwo: double
+  - sideOne: double
+  - sideThree: double
+}
+
+Circle               -[#000082,plain]-^  Shape               
+EquilateralTriangle  -[#000082,plain]-^  Triangle            
+Rectangle            -[#000082,plain]-^  Shape               
+RegularPentagon      -[#000082,plain]-^  Shape               
+ShapeCollection     "1" *-[#595959,plain]-> "shapesList\n*" Shape               
+Square               -[#000082,plain]-^  Rectangle           
+Triangle             -[#000082,plain]-^  Shape               
+@enduml
