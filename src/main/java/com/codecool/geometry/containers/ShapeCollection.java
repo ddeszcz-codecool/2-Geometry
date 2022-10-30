@@ -1,10 +1,9 @@
 package com.codecool.geometry.containers;
 
-import com.codecool.geometry.shapes.Shape;
+import com.codecool.geometry.shapes.*;
 
 import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ShapeCollection {
 
@@ -15,16 +14,93 @@ public class ShapeCollection {
     }
 
 
-    public void addShape (Shape shape) {
+    public void addShape(Shape shape) {
         this.shapesList.add(shape);
     }
 
-    public void addShape (Shape... shapes) {
-        for (Shape shape:shapes) {
+    public void addShape(Shape... shapes) {
+        for (Shape shape : shapes)
             this.shapesList.add(shape);
-        }
     }
 
+    public void addShapeBasedOnUserSelection(int selection){
+        Scanner scanner = new Scanner(System.in);
+
+        switch(selection){
+            case 1:
+                System.out.println("Please provide the radius length in m: ");
+                int radius = scanner.nextInt();
+                addCircle(radius);
+                break;
+            case 2:
+                System.out.println("Please provide side a length in m: ");
+                int sideA = scanner.nextInt();
+                System.out.println("Please provide side b length in m: ");
+                int sideB = scanner.nextInt();
+                addRectangle(sideA, sideB);
+                break;
+            case 3:
+                System.out.println("Please provide side a length in m: ");
+                int sideAtr = scanner.nextInt();
+                System.out.println("Please provide side b length in m: ");
+                int sideBtr = scanner.nextInt();
+                System.out.println("Please provide side c length in m: ");
+                int sideCtr = scanner.nextInt();
+                addTriangle(sideAtr, sideBtr, sideCtr);
+                break;
+            case 4:
+                System.out.println("Please provide side length in m: ");
+                int side = scanner.nextInt();
+                addSquare(side);
+                break;
+            case 5:
+                System.out.println("Please provide side length in m: ");
+                int sideTri = scanner.nextInt();
+                addEquilateralTriangle(sideTri);
+                break;
+            case 6:
+                System.out.println("Please provide side length in m: ");
+                int sidePen = scanner.nextInt();
+                addRegularPentagon(sidePen);
+                break;
+            default:
+                System.out.println("Error occurred when adding new element ");
+                break;
+            }
+
+
+
+        }
+
+    private void addCircle (int radius){
+        Circle circle = new Circle(radius);
+        addShape(circle);
+    }
+    
+    private void addRectangle (int sideA, int sideB){
+        Rectangle rectangle = new Rectangle(sideA, sideB);
+        addShape(rectangle);
+    }
+
+    private void addTriangle (int sideA, int sideB, int sideC){
+        Triangle triangle = new Triangle(sideA, sideB, sideC);
+        addShape(triangle);
+    }
+
+    private void addSquare (int sideA){
+        Square square = new Square(sideA);
+        addShape(square);
+    }
+
+    private void addEquilateralTriangle (int sideA){
+        EquilateralTriangle square = new EquilateralTriangle(sideA);
+        addShape(square);
+    }
+
+    private void addRegularPentagon (int sideA){
+        RegularPentagon square = new RegularPentagon(sideA);
+        addShape(square);}
+    
     public void getShapesTable() {
         int count = 0;
         int col1length = 3;
@@ -59,9 +135,9 @@ public class ShapeCollection {
                    shape.getClass().getSimpleName(),
                    shape.toString(),
                    shape.calculatePerimeter(),
-                   getFormulaPerimeter(shape),
+                   getPerimeterFormula(shape),
                    shape.calculateArea(),
-                   getFormulaArea(shape));
+                   getAreaFormula(shape));
 
             System.out.println(singleTableLine);
         }
@@ -69,7 +145,7 @@ public class ShapeCollection {
 
     }
 
-    private String getFormulaPerimeter(Shape shape){
+    private String getPerimeterFormula(Shape shape){
         switch (shape.getClass().getSimpleName()){
             case "Circle":
                 return "2×π×r";
@@ -88,7 +164,7 @@ public class ShapeCollection {
         }
     }
 
-    private String getFormulaArea(Shape shape){
+    private String getAreaFormula(Shape shape){
         switch (shape.getClass().getSimpleName()){
             case "Circle":
                 return "π×r×r";
@@ -107,6 +183,30 @@ public class ShapeCollection {
         }
     }
 
+    public SortShapeComparator getLargestShapeByPerimeter(){
+        List<SortShapeComparator> sortShapeComparators = new ArrayList<>();
 
+        for (Shape shape:this.shapesList) {
+            sortShapeComparators.add(new SortShapeComparator(shape.getClass().getSimpleName(), shape.calculateArea(), shape.calculatePerimeter()));
+        }
+
+        Collections.sort(sortShapeComparators, Comparator.comparingDouble(SortShapeComparator::getShapePerimeter));
+        int listLength = sortShapeComparators.size()-1;
+
+        return sortShapeComparators.get(listLength);
+    }
+
+    public SortShapeComparator getLargestShapeByArea(){
+        List<SortShapeComparator> sortShapeComparators = new ArrayList<>();
+
+        for (Shape shape:this.shapesList) {
+            sortShapeComparators.add(new SortShapeComparator(shape.getClass().getSimpleName(), shape.calculateArea(), shape.calculatePerimeter()));
+        }
+
+        Collections.sort(sortShapeComparators, Comparator.comparingDouble(SortShapeComparator::getShapeArea));
+        int listLength = sortShapeComparators.size()-1;
+
+        return sortShapeComparators.get(listLength);
+    }
 
 }

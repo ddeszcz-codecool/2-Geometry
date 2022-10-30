@@ -1,54 +1,66 @@
 package com.codecool.geometry;
 
+
 import com.codecool.geometry.containers.ShapeCollection;
-import com.codecool.geometry.shapes.Circle;
-import com.codecool.geometry.shapes.EquilateralTriangle;
-import com.codecool.geometry.shapes.Rectangle;
 import com.codecool.geometry.shapes.RegularPentagon;
-import com.codecool.geometry.shapes.Square;
-import com.codecool.geometry.shapes.Triangle;
+import com.codecool.geometry.utilities.Display;
+
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Circle circle = new Circle(4);
-        Rectangle rectangle = new Rectangle(2, 5);
-        Triangle triangle = new Triangle(6,7,8);
-        Square square = new Square(10);
-        EquilateralTriangle equilateralTriangle = new EquilateralTriangle(2);
+//        Circle circle = new Circle(6);
+//        Rectangle rectangle = new Rectangle(1.5, 1.4);
+//        Triangle triangle = new Triangle(6,7,8);
+//        Square square = new Square(10);
+//        EquilateralTriangle equilateralTriangle = new EquilateralTriangle(2);
         RegularPentagon regularPentagon = new RegularPentagon(5);
 
+
+
         ShapeCollection shapeCollection = new ShapeCollection();
-        shapeCollection.addShape(circle, rectangle, triangle, square, equilateralTriangle, regularPentagon);
+//        shapeCollection.addShape(circle, rectangle, triangle, square, equilateralTriangle, regularPentagon);
 
-        shapeCollection.getShapesTable();
 
-        System.exit(0);
+
+
+
+
 
         boolean isRunning = true;
 
 	    while (isRunning) {
-	        int option = 0;  // TODO read the keyboard here
+            Display.mainMenu();
+            Scanner scanner = new Scanner(System.in);
+            String optionChosenByUser = scanner.nextLine();
+            int option = Integer.valueOf(optionChosenByUser);
+
 
             switch (option) {
                 case 1:
-                    // TODO Add new shape
+                    System.out.println("Please choose shape type: ");
+                    Display.shapeTypesMenu();
+                    String shapeType = scanner.nextLine();
+                    shapeCollection.addShapeBasedOnUserSelection(Integer.valueOf(shapeType));
                     break;
                 case 2:
-                    // TODO Show all shapes
+                    shapeCollection.getShapesTable();
                     break;
                 case 3:
-                    // TODO Show shape with the largest perimeter
+                    Display.largestShapeByPerimeter(shapeCollection);
                     break;
                 case 4:
-                    // TODO Show shape with the largest area
+                    Display.largestShapeByArea(shapeCollection);
                     break;
                 case 5:
-                    // TODO Show formulas
+                    System.out.println("Please choose shape type: Circle, Rectangle, Triangle, Square, EquilateralTriangle, RegularPentagon");
+                    String shapeSelected= scanner.nextLine();
+                    Display.equationsForAreaAndPerimeter(shapeSelected);
                     break;
                 case 0:
-                    // TODO Exit
+                    System.exit(0);
                     break;
             }
         }
